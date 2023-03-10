@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Capa_Presentacion", "Capa_P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "conexionBD", "conexionBD\conexionBD.csproj", "{A0DB196D-D5EB-4B0A-98C8-8036ED3347C4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reportes", "Reportes", "{F124FCAE-B50A-494E-A532-379D84E35585}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{DCA42DB0-2E36-4192-BF91-81CA04FFF259} = {FA58C00B-E9F6-4133-A7E9-01E4A01A8049}
 		{A0DB196D-D5EB-4B0A-98C8-8036ED3347C4} = {109D7DFE-AACF-4182-8C23-5954117A05C0}
+		{F124FCAE-B50A-494E-A532-379D84E35585} = {FA58C00B-E9F6-4133-A7E9-01E4A01A8049}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {240987FB-455C-46F8-B3D9-FE244B8C20A2}
