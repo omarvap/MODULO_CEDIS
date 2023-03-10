@@ -227,7 +227,7 @@ namespace MODULO_CEDIS
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            if (txtId.Text != "" || txtNombre.Text != "" || cmbEstado.Text != "" || txtDescripcion.Text != "")
+                        if (txtId.Text != "" || txtNombre.Text != "" || cmbEstado.Text != "" || txtDescripcion.Text != "")
             {
 
                 if (MessageBox.Show("¿Tiene datos sin guardar, desea salir?", "Advertencia",
