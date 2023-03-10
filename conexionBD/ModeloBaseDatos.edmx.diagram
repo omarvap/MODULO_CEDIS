@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8c5418e2a7704804b3e0c1edd0ada802" Name="Diagram1">
+        <EntityTypeShape EntityType="CEDISModel.persona" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CEDISModel.empleado" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="CEDISModel.fk_persona" />
+        <EntityTypeShape EntityType="CEDISModel.asignar_cargo" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="CEDISModel.cargo" Width="1.5" PointX="3.5" PointY="4.125" />
+        <AssociationConnector Association="CEDISModel.fk_cargo" />
+        <AssociationConnector Association="CEDISModel.fk_empleado" />
+        <EntityTypeShape EntityType="CEDISModel.CEDIS" Width="1.5" PointX="5.75" PointY="6.125" />
+        <EntityTypeShape EntityType="CEDISModel.sucursal" Width="1.5" PointX="8.375" PointY="5.125" />
+        <EntityTypeShape EntityType="CEDISModel.usuario" Width="1.5" PointX="8" PointY="1.25" />
+        <AssociationConnector Association="CEDISModel.fk_asignar_cargo" />
+        <AssociationConnector Association="CEDISModel.fk_CEDIS" />
+        <AssociationConnector Association="CEDISModel.fk_sucursal" />
+        <EntityTypeShape EntityType="CEDISModel.categoria" Width="1.5" PointX="12.75" PointY="8.25" />
+        <EntityTypeShape EntityType="CEDISModel.marca" Width="1.5" PointX="16.625" PointY="5" />
+        <EntityTypeShape EntityType="CEDISModel.presentacion" Width="1.5" PointX="14.75" PointY="8.25" />
+        <EntityTypeShape EntityType="CEDISModel.producto" Width="1.5" PointX="13.875" PointY="2.75" />
+        <EntityTypeShape EntityType="CEDISModel.proveedor" Width="1.5" PointX="10.25" PointY="1.75" />
+        <EntityTypeShape EntityType="CEDISModel.sysdiagrams" Width="1.5" PointX="0.5" PointY="10.25" />
+        <EntityTypeShape EntityType="CEDISModel.unidad_medida" Width="1.5" PointX="11.125" PointY="5.125" />
+        <AssociationConnector Association="CEDISModel.fk_categoria" />
+        <AssociationConnector Association="CEDISModel.fk_marca" />
+        <AssociationConnector Association="CEDISModel.FK__proveedor__id_pe__571DF1D5" />
+        <AssociationConnector Association="CEDISModel.fk_presentacion" />
+        <AssociationConnector Association="CEDISModel.fk_unidad_medida" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
