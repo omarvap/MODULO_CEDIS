@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPresentacionSpcreen));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnContenedor = new System.Windows.Forms.Panel();
             this.pnCargar = new System.Windows.Forms.Panel();
@@ -123,6 +124,7 @@
             this.Controls.Add(this.pnContenedor);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmPresentacionSpcreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
