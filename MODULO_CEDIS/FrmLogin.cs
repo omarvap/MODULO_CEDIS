@@ -65,12 +65,51 @@ namespace MODULO_CEDIS
 
             this.Hide();
             FrmPresentacionSpcreen abrir = new FrmPresentacionSpcreen();
+            abrir.FormClosed += Logout;
             abrir.FormClosed += (s, args) => this.Close();
             abrir.Show();
             
         }
 
-        
-       
+        private void txtPass_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                CEDISEntities cn = new CEDISEntities();
+
+                string User = txtUser.Text;
+                string Pass = txtPass.Text;
+                int Sur = Convert.ToInt32(cmbSur.SelectedValue.ToString());
+
+                var rec = cn.usuario.Where(a => a.Name_User == User && a.Pass == Pass && a.id_sur == Sur).FirstOrDefault();
+
+
+
+                if (rec != null)
+                {
+                    MessageBox.Show("Acceso Autorizado");
+                }
+                else
+                {
+                    MessageBox.Show("Acceso denegado");
+                }
+
+                this.Hide();
+                FrmPresentacionSpcreen abrir = new FrmPresentacionSpcreen();
+                abrir.FormClosed += Logout;
+                abrir.FormClosed += (s, args) => this.Close();
+                abrir.Show();
+                
+            }
+
+        }
+        private void Logout(object sender, FormClosedEventArgs e)
+        {
+            txtPass.Text = "Pass";
+            txtPass.UseSystemPasswordChar = false;
+            txtUser.Text = "Username";
+            this.Show();
+        }
+
     }
 }

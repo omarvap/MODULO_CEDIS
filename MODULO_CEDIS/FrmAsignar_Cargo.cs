@@ -114,6 +114,8 @@ namespace MODULO_CEDIS
             {
                 MensajeError("Falta ingresar algunos datos, serán remarcados");
                 erroricono.SetError(txtId, "Ingrese un Codigo");
+                erroricono.SetError(cmbCargo, "Seleccione un cargo");
+                erroricono.SetError(cmbEmpleado, "Seleccione un empleado");
             }
 
             asignar_cargo nuevo = new asignar_cargo();
@@ -158,6 +160,110 @@ namespace MODULO_CEDIS
         private void btnCerrarvista_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (this.txtId.Text == string.Empty)
+            {
+                MensajeError("Falta ingresar algunos datos, serán remarcados");
+                erroricono.SetError(txtId, "Ingrese un Codigo");
+                erroricono.SetError(cmbCargo, "Seleccione un cargo");
+                erroricono.SetError(cmbEmpleado, "Seleccione un empleado");
+            }
+            //Metodo para ingresar datos de tipo int.
+            int codigo = 0;
+            int.TryParse(txtId.Text, out codigo);
+            //Metodo de ingresar datos decimales
+            var datos = from asi in cn.asignar_cargo
+                        where asi.id.ToString() == txtId.Text
+                        select asi;
+            //Validacion de los datos a actualizar.
+            if (datos.Count() > 0)
+            {
+                asignar_cargo encontrado = datos.First();
+
+                encontrado.id = codigo;
+                encontrado.id_empleado =Convert.ToInt32(cmbEmpleado.SelectedValue.ToString());
+                encontrado.id_cargo =Convert.ToInt32(cmbCargo.SelectedValue.ToString());
+            }
+            else//En caso de no encontrar los dato mandamos el msj.
+            {
+                MessageBox.Show("No se en contro el dato buscado");
+            }
+            //validacion de la actualizacion
+            try
+            {
+                if (cn.SaveChanges() == 1)
+                {
+                    MessageBox.Show("Los datos de la asignacion de cargo se Actualizaron corectamente");
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Los dato no se Actualizaron");
+            }
+
+            Refresh();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            //Validacion del boton de busqueda de datos.
+            CEDISEntities buscar = new CEDISEntities();
+            //Seleccion de los datos a buscar
+            var datos = from b in buscar.asignar_cargo
+                        join em in buscar.empleado on b.id_empleado equals em.id
+                        join per in buscar.persona on em.id_per equals per.id
+                        where per.Nombre == txtbuscar.Text
+                        select b;
+
+            //Busqueda con txtbuscar
+            if (datos.Count() > 0)
+            {
+                asignar_cargo encontrado = datos.First();
+
+                MessageBox.Show("El codigo es el: " + encontrado.id + "El cargo asignado es el: " + encontrado.cargo.Nombre_car);
+                txtId.Text = Convert.ToString(encontrado.id);
+                cmbCargo.Text = Convert.ToString(encontrado.id_cargo);
+                cmbCargo.Text = Convert.ToString(encontrado.id_empleado);
+                txtbuscar.Text = string.Empty;
+            }
+            else
+            {
+                MessageBox.Show("El sugeto no existe");
+            }
+        }
+
+        private void txtbuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                //Validacion del boton de busqueda de datos.
+                CEDISEntities buscar = new CEDISEntities();
+                //Seleccion de los datos a buscar
+                var datos = from b in buscar.asignar_cargo
+                            join em in buscar.empleado on b.id_empleado equals em.id
+                            join per in buscar.persona on em.id_per equals per.id
+                            where per.Nombre == txtbuscar.Text
+                            select b;
+
+                //Busqueda con txtbuscar
+                if (datos.Count() > 0)
+                {
+                    asignar_cargo encontrado = datos.First();
+
+                    MessageBox.Show("El codigo es el: " + encontrado.id + "El cargo asignado es el: " + encontrado.cargo.Nombre_car);
+                    txtId.Text = Convert.ToString(encontrado.id);
+                    cmbCargo.Text = Convert.ToString(encontrado.id_cargo);
+                    cmbCargo.Text = Convert.ToString(encontrado.id_empleado);
+                    txtbuscar.Text = string.Empty;
+                }
+                else
+                {
+                    MessageBox.Show("El sugeto no existe");
+                }
+            }
         }
     }
 }

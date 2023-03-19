@@ -33,11 +33,9 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.gpBusqueda = new System.Windows.Forms.GroupBox();
-            this.cmbbuscar = new System.Windows.Forms.ComboBox();
             this.txtbuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -59,17 +57,17 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.txtSitioWeb = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.txtFechaEntrega = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbEstado = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtObservacion = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbPolitica = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtSitioWeb = new System.Windows.Forms.TextBox();
-            this.cmbPersona = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbPersona = new System.Windows.Forms.ComboBox();
+            this.cmbPolitica = new System.Windows.Forms.ComboBox();
             this.erroricono = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -111,11 +109,9 @@
             this.gpBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpBusqueda.Controls.Add(this.cmbbuscar);
             this.gpBusqueda.Controls.Add(this.txtbuscar);
             this.gpBusqueda.Controls.Add(this.btnBuscar);
             this.gpBusqueda.Controls.Add(this.label10);
-            this.gpBusqueda.Controls.Add(this.label11);
             this.gpBusqueda.Controls.Add(this.label12);
             this.gpBusqueda.Controls.Add(this.label13);
             this.gpBusqueda.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -126,22 +122,14 @@
             this.gpBusqueda.TabStop = false;
             this.gpBusqueda.Text = "&Busqueda";
             // 
-            // cmbbuscar
-            // 
-            this.cmbbuscar.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold);
-            this.cmbbuscar.FormattingEnabled = true;
-            this.cmbbuscar.Location = new System.Drawing.Point(230, 70);
-            this.cmbbuscar.Name = "cmbbuscar";
-            this.cmbbuscar.Size = new System.Drawing.Size(132, 32);
-            this.cmbbuscar.TabIndex = 4;
-            // 
             // txtbuscar
             // 
-            this.txtbuscar.Location = new System.Drawing.Point(21, 70);
+            this.txtbuscar.Location = new System.Drawing.Point(38, 61);
             this.txtbuscar.Multiline = true;
             this.txtbuscar.Name = "txtbuscar";
-            this.txtbuscar.Size = new System.Drawing.Size(148, 32);
+            this.txtbuscar.Size = new System.Drawing.Size(311, 32);
             this.txtbuscar.TabIndex = 3;
+            this.txtbuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbuscar_KeyPress);
             // 
             // btnBuscar
             // 
@@ -156,6 +144,7 @@
             this.btnBuscar.Size = new System.Drawing.Size(61, 33);
             this.btnBuscar.TabIndex = 0;
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // label10
             // 
@@ -171,21 +160,6 @@
             this.label10.Size = new System.Drawing.Size(73, 24);
             this.label10.TabIndex = 2;
             this.label10.Text = "&Buscar";
-            // 
-            // label11
-            // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(226, 34);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(110, 24);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "&Filtrar por:";
             // 
             // label12
             // 
@@ -402,6 +376,7 @@
             this.btnEditar.Size = new System.Drawing.Size(55, 45);
             this.btnEditar.TabIndex = 3;
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnGuardar
             // 
@@ -469,6 +444,25 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "&Estado:";
             // 
+            // txtSitioWeb
+            // 
+            this.txtSitioWeb.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSitioWeb.Location = new System.Drawing.Point(227, 237);
+            this.txtSitioWeb.Multiline = true;
+            this.txtSitioWeb.Name = "txtSitioWeb";
+            this.txtSitioWeb.Size = new System.Drawing.Size(212, 31);
+            this.txtSitioWeb.TabIndex = 1;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(30, 244);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(91, 24);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "&Sitio web";
+            // 
             // txtFechaEntrega
             // 
             this.txtFechaEntrega.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -519,6 +513,16 @@
             this.txtObservacion.Size = new System.Drawing.Size(212, 78);
             this.txtObservacion.TabIndex = 1;
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(30, 101);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(69, 24);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "&Datos:";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -528,6 +532,17 @@
             this.label1.Size = new System.Drawing.Size(81, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "&Codigo:";
+            // 
+            // cmbPersona
+            // 
+            this.cmbPersona.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPersona.FormattingEnabled = true;
+            this.cmbPersona.Items.AddRange(new object[] {
+            "Seleccione"});
+            this.cmbPersona.Location = new System.Drawing.Point(227, 96);
+            this.cmbPersona.Name = "cmbPersona";
+            this.cmbPersona.Size = new System.Drawing.Size(151, 29);
+            this.cmbPersona.TabIndex = 2;
             // 
             // cmbPolitica
             // 
@@ -541,46 +556,6 @@
             this.cmbPolitica.Name = "cmbPolitica";
             this.cmbPolitica.Size = new System.Drawing.Size(97, 29);
             this.cmbPolitica.TabIndex = 2;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(30, 244);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(91, 24);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "&Sitio web";
-            // 
-            // txtSitioWeb
-            // 
-            this.txtSitioWeb.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSitioWeb.Location = new System.Drawing.Point(227, 237);
-            this.txtSitioWeb.Multiline = true;
-            this.txtSitioWeb.Name = "txtSitioWeb";
-            this.txtSitioWeb.Size = new System.Drawing.Size(212, 31);
-            this.txtSitioWeb.TabIndex = 1;
-            // 
-            // cmbPersona
-            // 
-            this.cmbPersona.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbPersona.FormattingEnabled = true;
-            this.cmbPersona.Items.AddRange(new object[] {
-            "Seleccione"});
-            this.cmbPersona.Location = new System.Drawing.Point(227, 96);
-            this.cmbPersona.Name = "cmbPersona";
-            this.cmbPersona.Size = new System.Drawing.Size(151, 29);
-            this.cmbPersona.TabIndex = 2;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(30, 101);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(69, 24);
-            this.label17.TabIndex = 0;
-            this.label17.Text = "&Datos:";
             // 
             // erroricono
             // 
@@ -618,11 +593,9 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.GroupBox gpBusqueda;
-        private System.Windows.Forms.ComboBox cmbbuscar;
         private System.Windows.Forms.TextBox txtbuscar;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox1;

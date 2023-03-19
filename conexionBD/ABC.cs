@@ -12,23 +12,23 @@ namespace conexionBD
     using System;
     using System.Collections.Generic;
     
-    public partial class producto
+    public partial class ABC
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ABC()
+        {
+            this.producto = new HashSet<producto>();
+        }
+    
         public int id { get; set; }
-        public int id_cat { get; set; }
-        public int id_pres { get; set; }
-        public int id_unidad { get; set; }
-        public int id_marca { get; set; }
-        public string nombre { get; set; }
-        public byte[] imagen { get; set; }
+        public string Nombre_ABC { get; set; }
+        public string Tipo_ABC { get; set; }
+        public decimal Peso_max { get; set; }
+        public decimal Peso_min { get; set; }
         public string Estado { get; set; }
         public string Descripcion { get; set; }
-        public int Ubicacion { get; set; }
     
-        public virtual categoria categoria { get; set; }
-        public virtual marca marca { get; set; }
-        public virtual presentacion presentacion { get; set; }
-        public virtual unidad_medida unidad_medida { get; set; }
-        public virtual ABC ABC { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<producto> producto { get; set; }
     }
 }

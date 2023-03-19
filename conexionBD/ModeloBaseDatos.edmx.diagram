@@ -18,10 +18,10 @@
         <AssociationConnector Association="CEDISModel.fk_asignar_cargo" />
         <AssociationConnector Association="CEDISModel.fk_CEDIS" />
         <AssociationConnector Association="CEDISModel.fk_sucursal" />
-        <EntityTypeShape EntityType="CEDISModel.categoria" Width="1.5" PointX="12.75" PointY="8.25" />
+        <EntityTypeShape EntityType="CEDISModel.categoria" Width="1.5" PointX="13.25" PointY="8.375" />
         <EntityTypeShape EntityType="CEDISModel.marca" Width="1.5" PointX="16.625" PointY="5" />
-        <EntityTypeShape EntityType="CEDISModel.presentacion" Width="1.5" PointX="14.75" PointY="8.25" />
-        <EntityTypeShape EntityType="CEDISModel.producto" Width="1.5" PointX="13.875" PointY="2.75" />
+        <EntityTypeShape EntityType="CEDISModel.presentacion" Width="1.5" PointX="15.125" PointY="8.25" />
+        <EntityTypeShape EntityType="CEDISModel.producto" Width="1.5" PointX="14.25" PointY="2.875" />
         <EntityTypeShape EntityType="CEDISModel.proveedor" Width="1.5" PointX="10.25" PointY="1.75" />
         <EntityTypeShape EntityType="CEDISModel.sysdiagrams" Width="1.5" PointX="0.5" PointY="10.25" />
         <EntityTypeShape EntityType="CEDISModel.unidad_medida" Width="1.5" PointX="11.125" PointY="5.125" />
@@ -30,6 +30,9 @@
         <AssociationConnector Association="CEDISModel.FK__proveedor__id_pe__571DF1D5" />
         <AssociationConnector Association="CEDISModel.fk_presentacion" />
         <AssociationConnector Association="CEDISModel.fk_unidad_medida" />
+        <EntityTypeShape EntityType="CEDISModel.ABC" Width="1.5" PointX="12" PointY="0.5" />
+        <EntityTypeShape EntityType="CEDISModel.traslado_producto" Width="1.5" PointX="20" PointY="4.25" />
+        <AssociationConnector Association="CEDISModel.fk_ABC" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -34,11 +34,9 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.gpBusqueda = new System.Windows.Forms.GroupBox();
-            this.cmbFiltrar = new System.Windows.Forms.ComboBox();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -114,11 +112,9 @@
             this.gpBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpBusqueda.Controls.Add(this.cmbFiltrar);
             this.gpBusqueda.Controls.Add(this.txtBuscar);
             this.gpBusqueda.Controls.Add(this.btnBuscar);
             this.gpBusqueda.Controls.Add(this.label11);
-            this.gpBusqueda.Controls.Add(this.label12);
             this.gpBusqueda.Controls.Add(this.label13);
             this.gpBusqueda.Controls.Add(this.label14);
             this.gpBusqueda.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -129,22 +125,14 @@
             this.gpBusqueda.TabStop = false;
             this.gpBusqueda.Text = "&Busqueda";
             // 
-            // cmbFiltrar
-            // 
-            this.cmbFiltrar.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold);
-            this.cmbFiltrar.FormattingEnabled = true;
-            this.cmbFiltrar.Location = new System.Drawing.Point(230, 70);
-            this.cmbFiltrar.Name = "cmbFiltrar";
-            this.cmbFiltrar.Size = new System.Drawing.Size(160, 32);
-            this.cmbFiltrar.TabIndex = 4;
-            // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(21, 70);
+            this.txtBuscar.Location = new System.Drawing.Point(48, 65);
             this.txtBuscar.Multiline = true;
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(183, 32);
+            this.txtBuscar.Size = new System.Drawing.Size(339, 32);
             this.txtBuscar.TabIndex = 3;
+            this.txtBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscar_KeyPress);
             // 
             // btnBuscar
             // 
@@ -159,6 +147,7 @@
             this.btnBuscar.Size = new System.Drawing.Size(61, 33);
             this.btnBuscar.TabIndex = 0;
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // label11
             // 
@@ -174,21 +163,6 @@
             this.label11.Size = new System.Drawing.Size(73, 24);
             this.label11.TabIndex = 2;
             this.label11.Text = "&Buscar";
-            // 
-            // label12
-            // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(226, 34);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(110, 24);
-            this.label12.TabIndex = 2;
-            this.label12.Text = "&Filtrar por:";
             // 
             // label13
             // 
@@ -402,6 +376,7 @@
             this.btnEditar.Size = new System.Drawing.Size(55, 45);
             this.btnEditar.TabIndex = 3;
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnGuardar
             // 
@@ -607,11 +582,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox gpBusqueda;
-        private System.Windows.Forms.ComboBox cmbFiltrar;
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.GroupBox groupBox1;

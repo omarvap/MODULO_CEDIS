@@ -66,8 +66,54 @@ namespace MODULO_CEDIS
             {
                 MessageBox.Show("Los dato no se guardaron");
             }
+            Refresh();
         }
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (this.txtId.Text == string.Empty && this.txtNomcar.Text == string.Empty && this.txtDescripcion.Text == string.Empty && this.cmbEstado.Text == string.Empty)
+            {
+                MensajeError("Falta ingresar algunos datos, serán remarcados");
+                erroricono.SetError(txtId, "Ingrese un Codigo");
+                erroricono.SetError(txtNomcar, "Ingrese un nombre a la categoria");
+                erroricono.SetError(txtDescripcion, "Ingrese una Descripción");
+                erroricono.SetError(cmbEstado, "Seleccione un campo");
+            }
+            //Metodo para ingresar datos de tipo int.
+            int codigo = 0;
+            int.TryParse(txtId.Text, out codigo);
+            //Seleccion de la tabla a actualizar.
+            var datos = from car in cn.cargo
+                        where car.id.ToString() == txtId.Text
+                        select car;
+            //Validacion de los datos a actualizar.
+            if (datos.Count() > 0)
+            {
+                cargo encontrado = datos.First();
 
+                encontrado.id = codigo;
+                encontrado.Nombre_car = txtNomcar.Text;
+                encontrado.Estado = cmbEstado.Text;
+                encontrado.Descripcion = txtDescripcion.Text;
+            }
+            else//En caso de no encontrar los dato mandamos el msj.
+            {
+                MessageBox.Show("No se en contro el dato buscado");
+            }
+            //validacion de la actualizacion
+            try
+            {
+                if (cn.SaveChanges() == 1)
+                {
+                    MessageBox.Show("Los datos del cargo se Actualizaron corectamente");
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Los dato no se Actualizaron");
+            }
+
+            Refresh();
+        }
         private void btnCerrar_Click_1(object sender, EventArgs e)
         {
             if (txtId.Text != "" || txtNomcar.Text != "" || cmbEstado.Text != "" || txtDescripcion.Text != "")
@@ -103,5 +149,62 @@ namespace MODULO_CEDIS
         {
             this.Close();
         }
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            //Validacion del boton de busqueda de datos.
+            CEDISEntities buscar = new CEDISEntities();
+            //Seleccion de los datos a buscar
+            var datos = from b in buscar.cargo
+                        where b.Nombre_car == txtBuscar.Text
+                        select b;
+
+            //Busqueda con txtbuscar
+            if (datos.Count() > 0)
+            {
+                cargo encontrado = datos.First();
+
+                MessageBox.Show("El codigo es el: " + encontrado.id + " Esta vinculado como: " + encontrado.Nombre_car + " ");
+                txtId.Text = Convert.ToString(encontrado.id);
+                txtNomcar.Text = encontrado.Nombre_car;
+                cmbEstado.Text = encontrado.Estado;
+                txtDescripcion.Text = encontrado.Descripcion;
+                txtBuscar.Text = string.Empty;
+            }
+            else
+            {
+                MessageBox.Show("El sugeto no existe");
+            }
+        }
+        private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                //Validacion del boton de busqueda de datos.
+                CEDISEntities buscar = new CEDISEntities();
+                //Seleccion de los datos a buscar
+                var datos = from b in buscar.cargo
+                            where b.Nombre_car == txtBuscar.Text
+                            select b;
+
+                //Busqueda con txtbuscar
+                if (datos.Count() > 0)
+                {
+                    cargo encontrado = datos.First();
+
+                    MessageBox.Show("El codigo es el: " + encontrado.id + " Esta vinculado como: " + encontrado.Nombre_car + " ");
+                    txtId.Text = Convert.ToString(encontrado.id);
+                    txtNomcar.Text = encontrado.Nombre_car;
+                    cmbEstado.Text = encontrado.Estado;
+                    txtDescripcion.Text = encontrado.Descripcion;
+                    txtBuscar.Text = string.Empty;
+                }
+                else
+                {
+                    MessageBox.Show("El sugeto no existe");
+                }
+            }
+        }
+
+
     }
 }

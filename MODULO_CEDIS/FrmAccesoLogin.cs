@@ -91,6 +91,8 @@ namespace MODULO_CEDIS
             {
                 MensajeError("Falta ingresar algunos datos, serán remarcados");
                 erroricono.SetError(txtId, "Ingrese un Codigo");
+                erroricono.SetError(cmbId_sur, "Seleccione una Sucursal");
+                erroricono.SetError(cmbAsigCargo, "Seleccione un cargo asignado");
                 erroricono.SetError(txtUser, "Ingrese un nombre de usuario");
                 erroricono.SetError(txtPass, "Ingrese una contraseña");
             }
@@ -112,7 +114,7 @@ namespace MODULO_CEDIS
             {
                 if (cn.SaveChanges() == 1)
                 {
-                    MessageBox.Show("Los datos del empleado se registraron corectamente");
+                    MessageBox.Show("Los datos del usuario se registraron corectamente");
                 }
             }
             catch (Exception)
@@ -139,6 +141,112 @@ namespace MODULO_CEDIS
         private void btnCerrarVista_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (this.txtId.Text == string.Empty && this.txtUser.Text == string.Empty && this.txtPass.Text == string.Empty)
+            {
+                MensajeError("Falta ingresar algunos datos, serán remarcados");
+                erroricono.SetError(txtId, "Ingrese un Codigo");
+                erroricono.SetError(txtUser, "Ingrese un nombre de usuario");
+                erroricono.SetError(txtPass, "Ingrese una contraseña");
+            }
+
+            //Metodo para ingresar datos de tipo int.
+            int codigo = 0;
+            int.TryParse(txtId.Text, out codigo);
+            //Seleccion de la tabla a actualizar.
+            var datos = from user in cn.usuario
+                        where user.id.ToString() == txtId.Text
+                        select user;
+            //Validacion de los datos a actualizar.
+            if (datos.Count() > 0)
+            {
+                usuario encontrado = datos.First();
+
+                encontrado.id = codigo;
+                encontrado.id_sur = Convert.ToInt32(cmbId_sur.SelectedValue.ToString());
+                encontrado.id_asig = Convert.ToInt32(cmbAsigCargo.SelectedValue.ToString());
+                encontrado.Name_User = txtUser.Text;
+                encontrado.Pass = txtPass.Text;
+            }
+            else//En caso de no encontrar los dato mandamos el msj.
+            {
+                MessageBox.Show("No se en contro el dato buscado");
+            }
+            //validacion de la actualizacion
+            try
+            {
+                if (cn.SaveChanges() == 1)
+                {
+                    MessageBox.Show("Los datos del usuario se Actualizaron corectamente");
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Los dato no se Actualizaron");
+            }
+
+            Refresh();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            //Validacion del boton de busqueda de datos.
+            CEDISEntities buscar = new CEDISEntities();
+            //Seleccion de los datos a buscar
+            var datos = from b in buscar.usuario
+                        where b.Name_User == txtbuscar.Text
+                        select b;
+
+            //Busqueda con txtbuscar
+            if (datos.Count() > 0)
+            {
+                usuario encontrado = datos.First();
+
+                MessageBox.Show("El codigo es el: " + encontrado.id + " Esta vinculado el usuarioi: " + encontrado.Name_User);
+                txtId.Text = Convert.ToString(encontrado.id);
+                cmbId_sur.Text = Convert.ToString(encontrado.id_sur);
+                cmbAsigCargo.Text = Convert.ToString(encontrado.id_asig);
+                txtUser.Text = encontrado.Name_User;
+                txtPass.Text = encontrado.Pass;
+                txtbuscar.Text = string.Empty;
+            }
+            else
+            {
+                MessageBox.Show("El sugeto no existe");
+            }
+        }
+
+        private void txtbuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                //Validacion del boton de busqueda de datos.
+                CEDISEntities buscar = new CEDISEntities();
+                //Seleccion de los datos a buscar
+                var datos = from b in buscar.usuario
+                            where b.Name_User == txtbuscar.Text
+                            select b;
+                //Busqueda con txtbuscar
+                if (datos.Count() > 0)
+                {
+                    usuario encontrado = datos.First();
+
+                    MessageBox.Show("El codigo es el: " + encontrado.id + " Esta vinculado el usuarioi: " + encontrado.Name_User);
+                    txtId.Text = Convert.ToString(encontrado.id);
+                    cmbId_sur.Text = Convert.ToString(encontrado.id_sur);
+                    cmbAsigCargo.Text = Convert.ToString(encontrado.id_asig);
+                    txtUser.Text = encontrado.Name_User;
+                    txtPass.Text = encontrado.Pass;
+                    txtbuscar.Text = string.Empty;
+                }
+                else
+                {
+                    MessageBox.Show("El sugeto no existe");
+                }
+            }
         }
     }
 }

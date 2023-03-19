@@ -33,11 +33,9 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.gpBusqueda = new System.Windows.Forms.GroupBox();
-            this.cmbbuscar = new System.Windows.Forms.ComboBox();
             this.txtbuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -57,12 +55,14 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.gbContenedor = new System.Windows.Forms.GroupBox();
             this.txtId = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtCantReflejada = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtCantReflejada = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.erroricono = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.gpBusqueda.SuspendLayout();
@@ -103,11 +103,9 @@
             this.gpBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpBusqueda.Controls.Add(this.cmbbuscar);
             this.gpBusqueda.Controls.Add(this.txtbuscar);
             this.gpBusqueda.Controls.Add(this.btnBuscar);
             this.gpBusqueda.Controls.Add(this.label10);
-            this.gpBusqueda.Controls.Add(this.label11);
             this.gpBusqueda.Controls.Add(this.label12);
             this.gpBusqueda.Controls.Add(this.label13);
             this.gpBusqueda.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -118,22 +116,14 @@
             this.gpBusqueda.TabStop = false;
             this.gpBusqueda.Text = "&Busqueda";
             // 
-            // cmbbuscar
-            // 
-            this.cmbbuscar.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold);
-            this.cmbbuscar.FormattingEnabled = true;
-            this.cmbbuscar.Location = new System.Drawing.Point(230, 67);
-            this.cmbbuscar.Name = "cmbbuscar";
-            this.cmbbuscar.Size = new System.Drawing.Size(132, 32);
-            this.cmbbuscar.TabIndex = 4;
-            // 
             // txtbuscar
             // 
             this.txtbuscar.Location = new System.Drawing.Point(21, 67);
             this.txtbuscar.Multiline = true;
             this.txtbuscar.Name = "txtbuscar";
-            this.txtbuscar.Size = new System.Drawing.Size(148, 32);
+            this.txtbuscar.Size = new System.Drawing.Size(299, 32);
             this.txtbuscar.TabIndex = 3;
+            this.txtbuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbuscar_KeyPress);
             // 
             // btnBuscar
             // 
@@ -148,6 +138,7 @@
             this.btnBuscar.Size = new System.Drawing.Size(61, 33);
             this.btnBuscar.TabIndex = 0;
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // label10
             // 
@@ -163,21 +154,6 @@
             this.label10.Size = new System.Drawing.Size(73, 24);
             this.label10.TabIndex = 2;
             this.label10.Text = "&Buscar";
-            // 
-            // label11
-            // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(226, 31);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(110, 24);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "&Filtrar por:";
             // 
             // label12
             // 
@@ -255,6 +231,7 @@
             this.btnCerrarVista.Size = new System.Drawing.Size(47, 47);
             this.btnCerrarVista.TabIndex = 4;
             this.btnCerrarVista.UseVisualStyleBackColor = false;
+            this.btnCerrarVista.Click += new System.EventHandler(this.btnCerrarVista_Click);
             // 
             // label14
             // 
@@ -317,6 +294,8 @@
             this.gbOpciones.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbOpciones.Controls.Add(this.label3);
+            this.gbOpciones.Controls.Add(this.btnEliminar);
             this.gbOpciones.Controls.Add(this.label9);
             this.gbOpciones.Controls.Add(this.label8);
             this.gbOpciones.Controls.Add(this.label7);
@@ -325,9 +304,9 @@
             this.gbOpciones.Controls.Add(this.btnEditar);
             this.gbOpciones.Controls.Add(this.btnGuardar);
             this.gbOpciones.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbOpciones.Location = new System.Drawing.Point(557, 112);
+            this.gbOpciones.Location = new System.Drawing.Point(557, 69);
             this.gbOpciones.Name = "gbOpciones";
-            this.gbOpciones.Size = new System.Drawing.Size(134, 294);
+            this.gbOpciones.Size = new System.Drawing.Size(134, 366);
             this.gbOpciones.TabIndex = 9;
             this.gbOpciones.TabStop = false;
             this.gbOpciones.Text = "Opciones";
@@ -336,7 +315,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold);
-            this.label9.Location = new System.Drawing.Point(32, 247);
+            this.label9.Location = new System.Drawing.Point(20, 321);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(76, 25);
             this.label9.TabIndex = 4;
@@ -346,7 +325,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold);
-            this.label8.Location = new System.Drawing.Point(32, 168);
+            this.label8.Location = new System.Drawing.Point(20, 163);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(72, 25);
             this.label8.TabIndex = 4;
@@ -378,7 +357,7 @@
             this.btnCerrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnCerrar.FlatAppearance.BorderSize = 0;
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrar.Location = new System.Drawing.Point(37, 199);
+            this.btnCerrar.Location = new System.Drawing.Point(37, 273);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(55, 45);
             this.btnCerrar.TabIndex = 3;
@@ -396,6 +375,7 @@
             this.btnEditar.Size = new System.Drawing.Size(55, 45);
             this.btnEditar.TabIndex = 3;
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnGuardar
             // 
@@ -424,7 +404,7 @@
             this.gbContenedor.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbContenedor.Location = new System.Drawing.Point(21, 69);
             this.gbContenedor.Name = "gbContenedor";
-            this.gbContenedor.Size = new System.Drawing.Size(511, 366);
+            this.gbContenedor.Size = new System.Drawing.Size(511, 291);
             this.gbContenedor.TabIndex = 8;
             this.gbContenedor.TabStop = false;
             this.gbContenedor.Text = "&Ingreso de datos";
@@ -437,6 +417,25 @@
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(114, 24);
             this.txtId.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(30, 107);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(183, 24);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "&Cantidad reflejada:";
+            // 
+            // txtCantReflejada
+            // 
+            this.txtCantReflejada.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCantReflejada.Location = new System.Drawing.Point(216, 100);
+            this.txtCantReflejada.Multiline = true;
+            this.txtCantReflejada.Name = "txtCantReflejada";
+            this.txtCantReflejada.Size = new System.Drawing.Size(212, 31);
+            this.txtCantReflejada.TabIndex = 1;
             // 
             // label5
             // 
@@ -467,29 +466,33 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "&Codigo:";
             // 
-            // txtCantReflejada
-            // 
-            this.txtCantReflejada.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantReflejada.Location = new System.Drawing.Point(216, 100);
-            this.txtCantReflejada.Multiline = true;
-            this.txtCantReflejada.Name = "txtCantReflejada";
-            this.txtCantReflejada.Size = new System.Drawing.Size(212, 31);
-            this.txtCantReflejada.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(30, 107);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(183, 24);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "&Cantidad reflejada:";
-            // 
             // erroricono
             // 
             this.erroricono.ContainerControl = this;
             this.erroricono.Icon = ((System.Drawing.Icon)(resources.GetObject("erroricono.Icon")));
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold);
+            this.label3.Location = new System.Drawing.Point(20, 248);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(95, 25);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "&Eliminar";
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.BackgroundImage = global::MODULO_CEDIS.Properties.Resources.boton_eliminar;
+            this.btnEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnEliminar.FlatAppearance.BorderSize = 0;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.Location = new System.Drawing.Point(37, 196);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(44, 49);
+            this.btnEliminar.TabIndex = 9;
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // FrmPresentacion
             // 
@@ -522,11 +525,9 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.GroupBox gpBusqueda;
-        private System.Windows.Forms.ComboBox cmbbuscar;
         private System.Windows.Forms.TextBox txtbuscar;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -552,5 +553,7 @@
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ErrorProvider erroricono;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnEliminar;
     }
 }

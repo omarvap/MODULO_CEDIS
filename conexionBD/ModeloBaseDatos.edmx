@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="CEDISModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ABC">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Nombre_ABC" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="Tipo_ABC" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Peso_max" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Peso_min" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="asignar_cargo">
           <Key>
             <PropertyRef Name="id" />
@@ -85,6 +97,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Ubicacion" Type="int" Nullable="false" />
           <Property Name="id_cat" Type="int" Nullable="false" />
           <Property Name="id_pres" Type="int" Nullable="false" />
           <Property Name="id_unidad" Type="int" Nullable="false" />
@@ -128,6 +141,18 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="traslado_producto">
+          <Key>
+            <PropertyRef Name="id_traslado" />
+          </Key>
+          <Property Name="id_traslado" Type="int" Nullable="false" />
+          <Property Name="fechaTraslado" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaModificacion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_almacenOrigen" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="id_almacenDestino" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="id_motivo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="1" Nullable="false" />
+        </EntityType>
         <EntityType Name="unidad_medida">
           <Key>
             <PropertyRef Name="id" />
@@ -155,6 +180,18 @@
             </Principal>
             <Dependent Role="proveedor">
               <PropertyRef Name="id_per" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ABC">
+          <End Role="ABC" Type="Self.ABC" Multiplicity="1" />
+          <End Role="producto" Type="Self.producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ABC">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="Ubicacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -334,6 +371,7 @@
         </Function>
         <Function Name="spmostrarpersona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="CEDISModelStoreContainer">
+          <EntitySet Name="ABC" EntityType="Self.ABC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="asignar_cargo" EntityType="Self.asignar_cargo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cargo" EntityType="Self.cargo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="categoria" EntityType="Self.categoria" Schema="dbo" store:Type="Tables" />
@@ -346,11 +384,16 @@
           <EntitySet Name="proveedor" EntityType="Self.proveedor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sucursal" EntityType="Self.sucursal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="traslado_producto" EntityType="Self.traslado_producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="unidad_medida" EntityType="Self.unidad_medida" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__proveedor__id_pe__571DF1D5" Association="Self.FK__proveedor__id_pe__571DF1D5">
             <End Role="persona" EntitySet="persona" />
             <End Role="proveedor" EntitySet="proveedor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ABC" Association="Self.fk_ABC">
+            <End Role="ABC" EntitySet="ABC" />
+            <End Role="producto" EntitySet="producto" />
           </AssociationSet>
           <AssociationSet Name="fk_asignar_cargo" Association="Self.fk_asignar_cargo">
             <End Role="asignar_cargo" EntitySet="asignar_cargo" />
@@ -525,6 +568,12 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="ABC" EntityType="CEDISModel.ABC" />
+          <EntitySet Name="traslado_producto" EntityType="CEDISModel.traslado_producto" />
+          <AssociationSet Name="fk_ABC" Association="CEDISModel.fk_ABC">
+            <End Role="ABC" EntitySet="ABC" />
+            <End Role="producto" EntitySet="producto" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="empleado">
           <Key>
@@ -723,6 +772,8 @@
           <NavigationProperty Name="marca" Relationship="CEDISModel.fk_marca" FromRole="producto" ToRole="marca" />
           <NavigationProperty Name="presentacion" Relationship="CEDISModel.fk_presentacion" FromRole="producto" ToRole="presentacion" />
           <NavigationProperty Name="unidad_medida" Relationship="CEDISModel.fk_unidad_medida" FromRole="producto" ToRole="unidad_medida" />
+          <Property Name="Ubicacion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ABC" Relationship="CEDISModel.fk_ABC" FromRole="producto" ToRole="ABC" />
         </EntityType>
         <EntityType Name="proveedor">
           <Key>
@@ -827,6 +878,43 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="ABC">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Nombre_ABC" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Tipo_ABC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Peso_max" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Peso_min" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="producto" Relationship="CEDISModel.fk_ABC" FromRole="ABC" ToRole="producto" />
+        </EntityType>
+        <EntityType Name="traslado_producto">
+          <Key>
+            <PropertyRef Name="id_traslado" />
+          </Key>
+          <Property Name="id_traslado" Type="Int32" Nullable="false" />
+          <Property Name="fechaTraslado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fechaModificacion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_almacenOrigen" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="id_almacenDestino" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="id_motivo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="fk_ABC">
+          <End Type="CEDISModel.ABC" Role="ABC" Multiplicity="1" />
+          <End Type="CEDISModel.producto" Role="producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ABC">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="Ubicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -960,6 +1048,7 @@
           <EntitySetMapping Name="producto">
             <EntityTypeMapping TypeName="CEDISModel.producto">
               <MappingFragment StoreEntitySet="producto">
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
@@ -1029,6 +1118,32 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="CEDISModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="CEDISModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="ABC">
+            <EntityTypeMapping TypeName="CEDISModel.ABC">
+              <MappingFragment StoreEntitySet="ABC">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Peso_min" ColumnName="Peso_min" />
+                <ScalarProperty Name="Peso_max" ColumnName="Peso_max" />
+                <ScalarProperty Name="Tipo_ABC" ColumnName="Tipo_ABC" />
+                <ScalarProperty Name="Nombre_ABC" ColumnName="Nombre_ABC" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="traslado_producto">
+            <EntityTypeMapping TypeName="CEDISModel.traslado_producto">
+              <MappingFragment StoreEntitySet="traslado_producto">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="id_motivo" ColumnName="id_motivo" />
+                <ScalarProperty Name="id_almacenDestino" ColumnName="id_almacenDestino" />
+                <ScalarProperty Name="id_almacenOrigen" ColumnName="id_almacenOrigen" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="fechaTraslado" ColumnName="fechaTraslado" />
+                <ScalarProperty Name="id_traslado" ColumnName="id_traslado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

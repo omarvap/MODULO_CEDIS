@@ -33,11 +33,9 @@
             this.tabContenedor = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.gpBusqueda = new System.Windows.Forms.GroupBox();
-            this.cmbbuscar = new System.Windows.Forms.ComboBox();
             this.txtbuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -65,6 +63,8 @@
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.erroricono = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label11 = new System.Windows.Forms.Label();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.tabContenedor.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.gpBusqueda.SuspendLayout();
@@ -84,10 +84,10 @@
             this.tabContenedor.Controls.Add(this.tabPage1);
             this.tabContenedor.Controls.Add(this.tabPage2);
             this.tabContenedor.Font = new System.Drawing.Font("Times New Roman", 12.25F, System.Drawing.FontStyle.Bold);
-            this.tabContenedor.Location = new System.Drawing.Point(12, 26);
+            this.tabContenedor.Location = new System.Drawing.Point(12, 12);
             this.tabContenedor.Name = "tabContenedor";
             this.tabContenedor.SelectedIndex = 0;
-            this.tabContenedor.Size = new System.Drawing.Size(722, 500);
+            this.tabContenedor.Size = new System.Drawing.Size(722, 537);
             this.tabContenedor.TabIndex = 0;
             // 
             // tabPage1
@@ -99,7 +99,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(714, 468);
+            this.tabPage1.Size = new System.Drawing.Size(714, 505);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Vista";
             // 
@@ -108,37 +108,27 @@
             this.gpBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpBusqueda.Controls.Add(this.cmbbuscar);
             this.gpBusqueda.Controls.Add(this.txtbuscar);
             this.gpBusqueda.Controls.Add(this.btnBuscar);
             this.gpBusqueda.Controls.Add(this.label10);
-            this.gpBusqueda.Controls.Add(this.label11);
             this.gpBusqueda.Controls.Add(this.label12);
             this.gpBusqueda.Controls.Add(this.label13);
             this.gpBusqueda.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpBusqueda.Location = new System.Drawing.Point(17, 6);
             this.gpBusqueda.Name = "gpBusqueda";
-            this.gpBusqueda.Size = new System.Drawing.Size(670, 118);
+            this.gpBusqueda.Size = new System.Drawing.Size(670, 115);
             this.gpBusqueda.TabIndex = 14;
             this.gpBusqueda.TabStop = false;
             this.gpBusqueda.Text = "&Busqueda";
             // 
-            // cmbbuscar
-            // 
-            this.cmbbuscar.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold);
-            this.cmbbuscar.FormattingEnabled = true;
-            this.cmbbuscar.Location = new System.Drawing.Point(230, 70);
-            this.cmbbuscar.Name = "cmbbuscar";
-            this.cmbbuscar.Size = new System.Drawing.Size(132, 32);
-            this.cmbbuscar.TabIndex = 4;
-            // 
             // txtbuscar
             // 
-            this.txtbuscar.Location = new System.Drawing.Point(21, 70);
+            this.txtbuscar.Location = new System.Drawing.Point(65, 65);
             this.txtbuscar.Multiline = true;
             this.txtbuscar.Name = "txtbuscar";
-            this.txtbuscar.Size = new System.Drawing.Size(148, 32);
+            this.txtbuscar.Size = new System.Drawing.Size(282, 32);
             this.txtbuscar.TabIndex = 3;
+            this.txtbuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbuscar_KeyPress);
             // 
             // btnBuscar
             // 
@@ -153,6 +143,7 @@
             this.btnBuscar.Size = new System.Drawing.Size(61, 33);
             this.btnBuscar.TabIndex = 0;
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // label10
             // 
@@ -168,21 +159,6 @@
             this.label10.Size = new System.Drawing.Size(73, 24);
             this.label10.TabIndex = 2;
             this.label10.Text = "&Buscar";
-            // 
-            // label11
-            // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(226, 34);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(110, 24);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "&Filtrar por:";
             // 
             // label12
             // 
@@ -226,7 +202,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(577, 127);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(124, 266);
+            this.groupBox1.Size = new System.Drawing.Size(124, 303);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "&Opciones";
@@ -263,7 +239,7 @@
             this.Reportebtn.FlatAppearance.BorderColor = System.Drawing.Color.Green;
             this.Reportebtn.FlatAppearance.BorderSize = 0;
             this.Reportebtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Reportebtn.Location = new System.Drawing.Point(37, 64);
+            this.Reportebtn.Location = new System.Drawing.Point(37, 61);
             this.Reportebtn.Name = "Reportebtn";
             this.Reportebtn.Size = new System.Drawing.Size(49, 38);
             this.Reportebtn.TabIndex = 5;
@@ -296,7 +272,7 @@
             this.Datos_Vistas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Datos_Vistas.Location = new System.Drawing.Point(6, 127);
             this.Datos_Vistas.Name = "Datos_Vistas";
-            this.Datos_Vistas.Size = new System.Drawing.Size(565, 313);
+            this.Datos_Vistas.Size = new System.Drawing.Size(565, 350);
             this.Datos_Vistas.TabIndex = 12;
             // 
             // tabPage2
@@ -307,12 +283,14 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(714, 468);
+            this.tabPage2.Size = new System.Drawing.Size(714, 505);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Ingreso";
             // 
             // gbOpciones
             // 
+            this.gbOpciones.Controls.Add(this.label11);
+            this.gbOpciones.Controls.Add(this.btnEliminar);
             this.gbOpciones.Controls.Add(this.label9);
             this.gbOpciones.Controls.Add(this.label8);
             this.gbOpciones.Controls.Add(this.label7);
@@ -321,9 +299,9 @@
             this.gbOpciones.Controls.Add(this.btnEditar);
             this.gbOpciones.Controls.Add(this.btnGuardar);
             this.gbOpciones.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbOpciones.Location = new System.Drawing.Point(526, 80);
+            this.gbOpciones.Location = new System.Drawing.Point(522, 40);
             this.gbOpciones.Name = "gbOpciones";
-            this.gbOpciones.Size = new System.Drawing.Size(134, 294);
+            this.gbOpciones.Size = new System.Drawing.Size(134, 360);
             this.gbOpciones.TabIndex = 7;
             this.gbOpciones.TabStop = false;
             this.gbOpciones.Text = "Opciones";
@@ -332,7 +310,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold);
-            this.label9.Location = new System.Drawing.Point(32, 247);
+            this.label9.Location = new System.Drawing.Point(20, 323);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(76, 25);
             this.label9.TabIndex = 4;
@@ -342,7 +320,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold);
-            this.label8.Location = new System.Drawing.Point(32, 168);
+            this.label8.Location = new System.Drawing.Point(20, 167);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(72, 25);
             this.label8.TabIndex = 4;
@@ -374,7 +352,7 @@
             this.btnCerrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnCerrar.FlatAppearance.BorderSize = 0;
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrar.Location = new System.Drawing.Point(37, 199);
+            this.btnCerrar.Location = new System.Drawing.Point(37, 275);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(55, 45);
             this.btnCerrar.TabIndex = 3;
@@ -392,6 +370,7 @@
             this.btnEditar.Size = new System.Drawing.Size(55, 45);
             this.btnEditar.TabIndex = 3;
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnGuardar
             // 
@@ -399,7 +378,7 @@
             this.btnGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGuardar.FlatAppearance.BorderSize = 0;
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardar.Location = new System.Drawing.Point(37, 47);
+            this.btnGuardar.Location = new System.Drawing.Point(37, 39);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(55, 32);
             this.btnGuardar.TabIndex = 3;
@@ -417,9 +396,9 @@
             this.gbContenedor.Controls.Add(this.txtDescripcion);
             this.gbContenedor.Controls.Add(this.label1);
             this.gbContenedor.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbContenedor.Location = new System.Drawing.Point(26, 24);
+            this.gbContenedor.Location = new System.Drawing.Point(37, 66);
             this.gbContenedor.Name = "gbContenedor";
-            this.gbContenedor.Size = new System.Drawing.Size(450, 366);
+            this.gbContenedor.Size = new System.Drawing.Size(450, 312);
             this.gbContenedor.TabIndex = 6;
             this.gbContenedor.TabStop = false;
             this.gbContenedor.Text = "&Ingreso de datos";
@@ -504,6 +483,29 @@
             this.erroricono.ContainerControl = this;
             this.erroricono.Icon = ((System.Drawing.Icon)(resources.GetObject("erroricono.Icon")));
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold);
+            this.label11.Location = new System.Drawing.Point(20, 247);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(95, 25);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "&Eliminar";
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.BackgroundImage = global::MODULO_CEDIS.Properties.Resources.boton_eliminar;
+            this.btnEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnEliminar.FlatAppearance.BorderSize = 0;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.Location = new System.Drawing.Point(37, 195);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(44, 49);
+            this.btnEliminar.TabIndex = 9;
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
             // FrmCategoria_Producto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -552,11 +554,9 @@
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox gpBusqueda;
-        private System.Windows.Forms.ComboBox cmbbuscar;
         private System.Windows.Forms.TextBox txtbuscar;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -567,5 +567,7 @@
         private System.Windows.Forms.ErrorProvider erroricono;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnCerrarvista;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnEliminar;
     }
 }

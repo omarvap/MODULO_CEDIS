@@ -31,10 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnContenedor = new System.Windows.Forms.Panel();
+            this.pnCargar = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.pnCargar = new System.Windows.Forms.Panel();
             this.tmrCargando = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnContenedor.SuspendLayout();
@@ -44,7 +44,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImage = global::MODULO_CEDIS.Properties.Resources.Logo2_removebg_preview;
-            this.pictureBox1.Location = new System.Drawing.Point(163, 83);
+            this.pictureBox1.Location = new System.Drawing.Point(188, 82);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(475, 149);
             this.pictureBox1.TabIndex = 0;
@@ -58,6 +58,14 @@
             this.pnContenedor.Name = "pnContenedor";
             this.pnContenedor.Size = new System.Drawing.Size(843, 24);
             this.pnContenedor.TabIndex = 1;
+            // 
+            // pnCargar
+            // 
+            this.pnCargar.BackColor = System.Drawing.Color.Green;
+            this.pnCargar.Location = new System.Drawing.Point(3, 3);
+            this.pnCargar.Name = "pnCargar";
+            this.pnCargar.Size = new System.Drawing.Size(108, 20);
+            this.pnCargar.TabIndex = 0;
             // 
             // label1
             // 
@@ -96,20 +104,12 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "&Sistema CEDIS \"Centro de distribución\".";
             // 
-            // pnCargar
-            // 
-            this.pnCargar.BackColor = System.Drawing.Color.Green;
-            this.pnCargar.Location = new System.Drawing.Point(3, 3);
-            this.pnCargar.Name = "pnCargar";
-            this.pnCargar.Size = new System.Drawing.Size(108, 20);
-            this.pnCargar.TabIndex = 0;
-            // 
             // tmrCargando
             // 
             this.tmrCargando.Enabled = true;
             this.tmrCargando.Tick += new System.EventHandler(this.tmrCargando_Tick);
             // 
-            // FrmPresentacion
+            // FrmPresentacionSpcreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -123,7 +123,7 @@
             this.Controls.Add(this.pnContenedor);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FrmPresentacion";
+            this.Name = "FrmPresentacionSpcreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnContenedor.ResumeLayout(false);

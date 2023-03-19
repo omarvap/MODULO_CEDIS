@@ -1,16 +1,16 @@
 ﻿namespace MODULO_CEDIS
 {
-    partial class FrmRegistro_Genreal
+    partial class FrmABC
     {
         /// <summary>
-        /// Variable del diseñador necesaria.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Limpiar los recursos que se estén usando.
+        /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,17 +20,16 @@
             base.Dispose(disposing);
         }
 
-        #region Código generado por el Diseñador de Windows Forms
+        #region Windows Form Designer generated code
 
         /// <summary>
-        /// Método necesario para admitir el Diseñador. No se puede modificar
-        /// el contenido de este método con el editor de código.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRegistro_Genreal));
-            this.erroricono = new System.Windows.Forms.ErrorProvider(this.components);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmABC));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.gpBusqueda = new System.Windows.Forms.GroupBox();
@@ -42,7 +41,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.gbopciones = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnReporte = new System.Windows.Forms.Button();
             this.btnCerrarvista = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -58,23 +57,21 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.gbContenedor = new System.Windows.Forms.GroupBox();
-            this.txtDireccion = new System.Windows.Forms.TextBox();
-            this.txtApe_razon = new System.Windows.Forms.TextBox();
+            this.txtPesoMin = new System.Windows.Forms.TextBox();
+            this.txtPesoMax = new System.Windows.Forms.TextBox();
+            this.txtTipoABC = new System.Windows.Forms.TextBox();
+            this.cmbNombreABC = new System.Windows.Forms.ComboBox();
             this.cmbEstado = new System.Windows.Forms.ComboBox();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtTelefono = new System.Windows.Forms.TextBox();
             this.txtId = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtDNI = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.erroricono)).BeginInit();
+            this.erroricono = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.gpBusqueda.SuspendLayout();
@@ -83,12 +80,8 @@
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gbContenedor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.erroricono)).BeginInit();
             this.SuspendLayout();
-            // 
-            // erroricono
-            // 
-            this.erroricono.ContainerControl = this;
-            this.erroricono.Icon = ((System.Drawing.Icon)(resources.GetObject("erroricono.Icon")));
             // 
             // tabControl1
             // 
@@ -99,7 +92,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(722, 537);
-            this.tabControl1.TabIndex = 0;
+            this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
             // 
@@ -229,7 +222,7 @@
             // 
             // gbopciones
             // 
-            this.gbopciones.Controls.Add(this.button1);
+            this.gbopciones.Controls.Add(this.btnReporte);
             this.gbopciones.Controls.Add(this.btnCerrarvista);
             this.gbopciones.Controls.Add(this.label17);
             this.gbopciones.Controls.Add(this.label18);
@@ -241,22 +234,21 @@
             this.gbopciones.TabStop = false;
             this.gbopciones.Text = "&Opciones";
             // 
-            // button1
+            // btnReporte
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Green;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(38, 46);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(48, 38);
-            this.button1.TabIndex = 1;
-            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnReporte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReporte.BackColor = System.Drawing.Color.Transparent;
+            this.btnReporte.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReporte.BackgroundImage")));
+            this.btnReporte.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReporte.FlatAppearance.BorderColor = System.Drawing.Color.Green;
+            this.btnReporte.FlatAppearance.BorderSize = 0;
+            this.btnReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReporte.Location = new System.Drawing.Point(38, 46);
+            this.btnReporte.Name = "btnReporte";
+            this.btnReporte.Size = new System.Drawing.Size(48, 38);
+            this.btnReporte.TabIndex = 1;
+            this.btnReporte.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnReporte.UseVisualStyleBackColor = false;
             // 
             // btnCerrarvista
             // 
@@ -343,7 +335,7 @@
             this.groupBox1.Controls.Add(this.btnEliminar);
             this.groupBox1.Controls.Add(this.btnEditar);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(545, 78);
+            this.groupBox1.Location = new System.Drawing.Point(538, 79);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(160, 362);
             this.groupBox1.TabIndex = 10;
@@ -369,6 +361,7 @@
             this.label11.Size = new System.Drawing.Size(95, 25);
             this.label11.TabIndex = 8;
             this.label11.Text = "&Eliminar";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // label10
             // 
@@ -447,47 +440,67 @@
             this.gbContenedor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbContenedor.Controls.Add(this.txtDireccion);
-            this.gbContenedor.Controls.Add(this.txtApe_razon);
+            this.gbContenedor.Controls.Add(this.txtPesoMin);
+            this.gbContenedor.Controls.Add(this.txtPesoMax);
+            this.gbContenedor.Controls.Add(this.txtTipoABC);
+            this.gbContenedor.Controls.Add(this.cmbNombreABC);
             this.gbContenedor.Controls.Add(this.cmbEstado);
-            this.gbContenedor.Controls.Add(this.txtNombre);
-            this.gbContenedor.Controls.Add(this.txtTelefono);
             this.gbContenedor.Controls.Add(this.txtId);
             this.gbContenedor.Controls.Add(this.label8);
             this.gbContenedor.Controls.Add(this.label2);
-            this.gbContenedor.Controls.Add(this.txtDNI);
             this.gbContenedor.Controls.Add(this.label1);
             this.gbContenedor.Controls.Add(this.label7);
             this.gbContenedor.Controls.Add(this.txtDescripcion);
             this.gbContenedor.Controls.Add(this.label6);
             this.gbContenedor.Controls.Add(this.label3);
-            this.gbContenedor.Controls.Add(this.label5);
             this.gbContenedor.Controls.Add(this.label4);
             this.gbContenedor.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbContenedor.Location = new System.Drawing.Point(9, 13);
+            this.gbContenedor.Location = new System.Drawing.Point(19, 22);
             this.gbContenedor.Name = "gbContenedor";
-            this.gbContenedor.Size = new System.Drawing.Size(530, 479);
+            this.gbContenedor.Size = new System.Drawing.Size(490, 464);
             this.gbContenedor.TabIndex = 9;
             this.gbContenedor.TabStop = false;
             this.gbContenedor.Text = "&Ingreso de datos";
             // 
-            // txtDireccion
+            // txtPesoMin
             // 
-            this.txtDireccion.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDireccion.Location = new System.Drawing.Point(190, 182);
-            this.txtDireccion.Multiline = true;
-            this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(291, 29);
-            this.txtDireccion.TabIndex = 1;
+            this.txtPesoMin.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPesoMin.Location = new System.Drawing.Point(208, 241);
+            this.txtPesoMin.Multiline = true;
+            this.txtPesoMin.Name = "txtPesoMin";
+            this.txtPesoMin.Size = new System.Drawing.Size(79, 24);
+            this.txtPesoMin.TabIndex = 1;
             // 
-            // txtApe_razon
+            // txtPesoMax
             // 
-            this.txtApe_razon.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApe_razon.Location = new System.Drawing.Point(190, 133);
-            this.txtApe_razon.Multiline = true;
-            this.txtApe_razon.Name = "txtApe_razon";
-            this.txtApe_razon.Size = new System.Drawing.Size(291, 30);
-            this.txtApe_razon.TabIndex = 1;
+            this.txtPesoMax.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPesoMax.Location = new System.Drawing.Point(208, 191);
+            this.txtPesoMax.Multiline = true;
+            this.txtPesoMax.Name = "txtPesoMax";
+            this.txtPesoMax.Size = new System.Drawing.Size(79, 24);
+            this.txtPesoMax.TabIndex = 1;
+            // 
+            // txtTipoABC
+            // 
+            this.txtTipoABC.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTipoABC.Location = new System.Drawing.Point(208, 147);
+            this.txtTipoABC.Multiline = true;
+            this.txtTipoABC.Name = "txtTipoABC";
+            this.txtTipoABC.Size = new System.Drawing.Size(245, 31);
+            this.txtTipoABC.TabIndex = 1;
+            // 
+            // cmbNombreABC
+            // 
+            this.cmbNombreABC.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbNombreABC.FormattingEnabled = true;
+            this.cmbNombreABC.Items.AddRange(new object[] {
+            "A",
+            "B",
+            "C"});
+            this.cmbNombreABC.Location = new System.Drawing.Point(208, 97);
+            this.cmbNombreABC.Name = "cmbNombreABC";
+            this.cmbNombreABC.Size = new System.Drawing.Size(78, 29);
+            this.cmbNombreABC.TabIndex = 3;
             // 
             // cmbEstado
             // 
@@ -496,33 +509,15 @@
             this.cmbEstado.Items.AddRange(new object[] {
             "A",
             "I"});
-            this.cmbEstado.Location = new System.Drawing.Point(191, 321);
+            this.cmbEstado.Location = new System.Drawing.Point(208, 283);
             this.cmbEstado.Name = "cmbEstado";
             this.cmbEstado.Size = new System.Drawing.Size(78, 29);
             this.cmbEstado.TabIndex = 3;
             // 
-            // txtNombre
-            // 
-            this.txtNombre.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(190, 91);
-            this.txtNombre.Multiline = true;
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(291, 31);
-            this.txtNombre.TabIndex = 1;
-            // 
-            // txtTelefono
-            // 
-            this.txtTelefono.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefono.Location = new System.Drawing.Point(191, 230);
-            this.txtTelefono.Multiline = true;
-            this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(290, 29);
-            this.txtTelefono.TabIndex = 1;
-            // 
             // txtId
             // 
             this.txtId.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtId.Location = new System.Drawing.Point(191, 49);
+            this.txtId.Location = new System.Drawing.Point(209, 53);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(78, 29);
             this.txtId.TabIndex = 1;
@@ -530,7 +525,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(18, 52);
+            this.label8.Location = new System.Drawing.Point(36, 56);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(93, 26);
             this.label8.TabIndex = 0;
@@ -539,25 +534,16 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 137);
+            this.label2.Location = new System.Drawing.Point(39, 148);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 26);
+            this.label2.Size = new System.Drawing.Size(122, 26);
             this.label2.TabIndex = 0;
-            this.label2.Text = "&Apellido:";
-            // 
-            // txtDNI
-            // 
-            this.txtDNI.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDNI.Location = new System.Drawing.Point(190, 275);
-            this.txtDNI.Multiline = true;
-            this.txtDNI.Name = "txtDNI";
-            this.txtDNI.Size = new System.Drawing.Size(291, 29);
-            this.txtDNI.TabIndex = 1;
+            this.label2.Text = "&Tipo ABC:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 96);
+            this.label1.Location = new System.Drawing.Point(36, 100);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 26);
             this.label1.TabIndex = 0;
@@ -566,7 +552,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(18, 372);
+            this.label7.Location = new System.Drawing.Point(39, 331);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(142, 26);
             this.label7.TabIndex = 0;
@@ -575,16 +561,16 @@
             // txtDescripcion
             // 
             this.txtDescripcion.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcion.Location = new System.Drawing.Point(191, 369);
+            this.txtDescripcion.Location = new System.Drawing.Point(208, 331);
             this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(290, 74);
+            this.txtDescripcion.Size = new System.Drawing.Size(245, 114);
             this.txtDescripcion.TabIndex = 1;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(18, 324);
+            this.label6.Location = new System.Drawing.Point(39, 283);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(90, 26);
             this.label6.TabIndex = 0;
@@ -593,40 +579,35 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 185);
+            this.label3.Location = new System.Drawing.Point(36, 189);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(120, 26);
+            this.label3.Size = new System.Drawing.Size(154, 26);
             this.label3.TabIndex = 0;
-            this.label3.Text = "&Dirección:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 278);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(63, 26);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "&DNI:";
+            this.label3.Text = "&Peso maximo:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 233);
+            this.label4.Location = new System.Drawing.Point(36, 237);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(106, 26);
+            this.label4.Size = new System.Drawing.Size(150, 26);
             this.label4.TabIndex = 0;
-            this.label4.Text = "&Telefono:";
+            this.label4.Text = "&Peso minimo:";
             // 
-            // FrmRegistro_Genreal
+            // erroricono
+            // 
+            this.erroricono.ContainerControl = this;
+            this.erroricono.Icon = ((System.Drawing.Icon)(resources.GetObject("erroricono.Icon")));
+            // 
+            // FrmABC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(746, 561);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FrmRegistro_Genreal";
-            this.Load += new System.EventHandler(this.FrmRegistro_Genreal_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.erroricono)).EndInit();
+            this.Name = "FrmABC";
+            this.Load += new System.EventHandler(this.FrmABC_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.gpBusqueda.ResumeLayout(false);
@@ -639,14 +620,29 @@
             this.groupBox1.PerformLayout();
             this.gbContenedor.ResumeLayout(false);
             this.gbContenedor.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.erroricono)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.ErrorProvider erroricono;
+
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.GroupBox gpBusqueda;
+        private System.Windows.Forms.ComboBox cmbFiltrar;
+        private System.Windows.Forms.TextBox txtBuscar;
+        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.GroupBox gbopciones;
+        private System.Windows.Forms.Button btnReporte;
+        private System.Windows.Forms.Button btnCerrarvista;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.DataGridView Datos_Vistas;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label12;
@@ -658,36 +654,20 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.GroupBox gbContenedor;
-        private System.Windows.Forms.TextBox txtDireccion;
-        private System.Windows.Forms.TextBox txtApe_razon;
+        private System.Windows.Forms.TextBox txtPesoMax;
+        private System.Windows.Forms.TextBox txtTipoABC;
         private System.Windows.Forms.ComboBox cmbEstado;
-        private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtDNI;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.GroupBox gpBusqueda;
-        private System.Windows.Forms.ComboBox cmbFiltrar;
-        private System.Windows.Forms.TextBox txtBuscar;
-        private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.GroupBox gbopciones;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnCerrarvista;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.DataGridView Datos_Vistas;
+        private System.Windows.Forms.TextBox txtPesoMin;
+        private System.Windows.Forms.ComboBox cmbNombreABC;
+        private System.Windows.Forms.ErrorProvider erroricono;
     }
 }
-

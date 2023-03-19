@@ -17,6 +17,10 @@ namespace MODULO_CEDIS
             InitializeComponent();
             ocultarmenu();
         }
+        private void FrmMenu_Principal_Load(object sender, EventArgs e)
+        {
+            TmHoraFecha.Enabled = true;
+        }
         /*Codificacion del diseño modular del sistema CEDIS del proyecto final de produccion III*/
         private Form activo = null;
         private void abripanelhijo(Form panelhijo)
@@ -119,46 +123,75 @@ namespace MODULO_CEDIS
             abripanelhijo(new FrmSucursal());
             ocultarmenu();
         }
-        private void btnCategoria_Click(object sender, EventArgs e)
+
+
+        private void btnCategoria_Click_1(object sender, EventArgs e)
         {
             //mandar a llamar un fromulario
             abripanelhijo(new FrmCategoria_Producto());
             ocultarmenu();
         }
 
-        private void btnPresentacion_Click(object sender, EventArgs e)
+        private void btnPresentacion_Click_1(object sender, EventArgs e)
         {
             //mandar a llamar un fromulario
             abripanelhijo(new FrmPresentacion());
             ocultarmenu();
         }
 
-        private void btnUnidad_Click(object sender, EventArgs e)
+        private void btnUnidad_Click_1(object sender, EventArgs e)
         {
             //mandar a llamar un fromulario
             abripanelhijo(new FrmUnida_Medida());
             ocultarmenu();
         }
 
-        private void btnMarca_Click(object sender, EventArgs e)
+        private void btnMarca_Click_1(object sender, EventArgs e)
         {
             //mandar a llamar un fromulario
             abripanelhijo(new FrmMarca_Producto());
             ocultarmenu();
         }
 
-        private void btnProveedor_Click(object sender, EventArgs e)
+        private void btnProveedor_Click_1(object sender, EventArgs e)
         {
             //mandar a llamar un fromulario
             abripanelhijo(new FrmProveedor());
             ocultarmenu();
         }
 
-        private void btnProducto_Click(object sender, EventArgs e)
+        private void btnProducto_Click_1(object sender, EventArgs e)
         {
             //mandar a llamar un fromulario
             abripanelhijo(new FrmProducto());
             ocultarmenu();
         }
+
+        private void btnAlmacenABC_Click(object sender, EventArgs e)
+        {
+            //mandar a llamar un fromulario
+            abripanelhijo(new FrmABC());
+            ocultarmenu();
+        }
+        //Para cambiar de usuario
+        private void btnCerrarSeccion_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Esta seguro de cerrar sesón?", "Alvertencia",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                FrmLogin open = new FrmLogin();
+                open.Show();
+                this.Hide();
+            }
+             
+        }
+
+        private void TmHoraFecha_Tick(object sender, EventArgs e)
+        {
+            lbHora.Text = DateTime.Now.ToString("hh:mm:ss tt");
+            lbFecha.Text = DateTime.Now.ToLongDateString();
+        }
+
+
     }
 }

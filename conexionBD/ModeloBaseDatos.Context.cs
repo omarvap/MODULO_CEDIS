@@ -41,6 +41,8 @@ namespace conexionBD
         public virtual DbSet<proveedor> proveedor { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<unidad_medida> unidad_medida { get; set; }
+        public virtual DbSet<ABC> ABC { get; set; }
+        public virtual DbSet<traslado_producto> traslado_producto { get; set; }
     
         public virtual int spinsertarpersona(Nullable<int> id, Nullable<int> nombre, string apellido_razon, string dirreccion, Nullable<int> telefono, string dNI, string estado, string descripcion)
         {

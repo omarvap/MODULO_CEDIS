@@ -1,48 +1,44 @@
-﻿using conexionBD;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using conexionBD;
 
 namespace MODULO_CEDIS
 {
-    public partial class FrmRegistro_Genreal : Form
+  
+    public partial class FrmABC : Form
     {
-        public FrmRegistro_Genreal()
+        public FrmABC()
         {
             InitializeComponent();
         }
-
-        //LLamado de la base de datos.
         CEDISEntities cn = new CEDISEntities();
-
-        private void FrmRegistro_Genreal_Load(object sender, EventArgs e)
+        private void FrmABC_Load(object sender, EventArgs e)
         {
-            Refresh();//Carga de los datos guardados mostrado en el datagri.
-            combobuscar();//Cargar para la busqueda por estado
+            Refresh(); //Carga de los datos guardados mostrado en el datagri.
+            combobuscar();//Cargar para la busqueda por nombre ABC
         }
         //Procedimiento de vista de datos de la base de datos.
         public override void Refresh()
         {
             using (var files = new CEDISEntities())
             {
-                var ViewData = from per in files.persona
+                var ViewData = from abc in files.ABC
                                select new
                                {
-                                   Codigo = per.id,
-                                   Nombre = per.Nombre,
-                                   Apellido_razon = per.Apellido_razon,
-                                   Dirección = per.Direccion,
-                                   Telefono = per.Telefono,
-                                   DNI = per.DNI,
-                                   Estado = per.Estado,
-                                   Descripción = per.Descripcion,
+                                   Codigo = abc.id,
+                                   Nombre = abc.Nombre_ABC,
+                                   Tipo = abc.Tipo_ABC,
+                                   Peso_Maximo = abc.Peso_max,
+                                   Peso_Minimo = abc.Peso_min,
+                                   Estado = abc.Estado,
+                                   Descripción = abc.Descripcion,
                                };
                 Datos_Vistas.DataSource = ViewData.ToList();
             }
@@ -53,20 +49,19 @@ namespace MODULO_CEDIS
         {
             using (CEDISEntities cn = new CEDISEntities())
             {
-                var lstPersona = (from p in cn.persona
+                var lstABC = (from p in cn.ABC
                                   select p).ToList();
 
-                cmbFiltrar.DataSource = lstPersona;
+                cmbFiltrar.DataSource = lstABC;
                 cmbFiltrar.ValueMember = "id";
                 cmbFiltrar.DisplayMember = "Estado";
 
-                if(cmbFiltrar.Items.Count > 1)
+                if (cmbFiltrar.Items.Count > 1)
                 {
                     cmbFiltrar.SelectedIndex = -1;
                 }
             }
         }
-        /*Procedimiento de Ingresar de datos en el sistema*/
         private void MensajeError(string mensaje)
         {
             MessageBox.Show(mensaje, "Sistema de CEDIS", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -74,46 +69,47 @@ namespace MODULO_CEDIS
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             //Validaciones de los campos de los fromularios que no esten nulos.
-            if (this.txtId.Text == string.Empty && this.txtNombre.Text == string.Empty && this.txtApe_razon.Text == string.Empty &&
-                         this.txtDireccion.Text == string.Empty && this.txtTelefono.Text == string.Empty
-                          && this.txtDNI.Text == string.Empty && this.txtDescripcion.Text == string.Empty && this.cmbEstado.Text == string.Empty)
+            if (this.txtId.Text == string.Empty && this.cmbNombreABC.Text == string.Empty && this.txtTipoABC.Text == string.Empty &&
+                         this.txtPesoMax.Text == string.Empty && this.txtPesoMin.Text == string.Empty
+                         && this.txtDescripcion.Text == string.Empty && this.cmbEstado.Text == string.Empty)
             {
                 MensajeError("Falta ingresar algunos datos, serán remarcados");
                 erroricono.SetError(txtId, "Ingrese un Codigo");
-                erroricono.SetError(txtNombre, "Ingrese un nombre");
-                erroricono.SetError(txtApe_razon, "Ingrese un apellido");
-                erroricono.SetError(txtDireccion, "Ingrese una direccion");
-                erroricono.SetError(txtTelefono, "Ingrese un telefono");
-                erroricono.SetError(txtDNI, "Ingrese un numero telefonico");
+                erroricono.SetError(cmbNombreABC, "Ingrese un nombre");
+                erroricono.SetError(txtTipoABC, "Ingrese un tipo de ABC");
+                erroricono.SetError(txtPesoMax, "Ingrese el peso maximo");
+                erroricono.SetError(txtPesoMin, "Ingrese el peso minimo");
                 erroricono.SetError(txtDescripcion, "Ingrese una Descripción");
                 erroricono.SetError(cmbEstado, "Seleccione un campo");
             }
-            //Llamso de la tabla de la base de datos.
-            persona nuevo = new persona();
-            //Metodo para ingresar datos de tipo int.
-            int numero = 0;
-            int.TryParse(txtTelefono.Text, out numero);
+            //Llamado de la tabla de la base de datos.
+            ABC nuevo = new ABC();
             //Metodo para ingresar datos de tipo int.
             int codigo = 0;
             int.TryParse(txtId.Text, out codigo);
+            //Metodo de ingresar datos decimales
+            decimal maximo = 0;
+            decimal.TryParse(txtPesoMax.Text, out maximo);
+            //Metodo de ingresar datos decimales
+            decimal minimo = 0;
+            decimal.TryParse(txtPesoMin.Text, out minimo);
             //Ingreso de los datos en la base de datos por medio del formulario.
             nuevo.id = codigo;
-            nuevo.Nombre = txtNombre.Text;
-            nuevo.Apellido_razon = txtApe_razon.Text;
-            nuevo.Direccion = txtDireccion.Text;
-            nuevo.Telefono = numero;
-            nuevo.DNI = txtDNI.Text;
+            nuevo.Nombre_ABC = cmbNombreABC.Text;
+            nuevo.Tipo_ABC = txtTipoABC.Text;
+            nuevo.Peso_max = maximo;
+            nuevo.Peso_min = minimo;
             nuevo.Estado = cmbEstado.Text;
             nuevo.Descripcion = txtDescripcion.Text;
 
             //Aplicar los el ingreso de los datos.
-            cn.persona.Add(nuevo);
+            cn.ABC.Add(nuevo);
             //validacion de los datos ingresados son los correctos.
             try
             {
                 if (cn.SaveChanges() == 1)
                 {
-                    MessageBox.Show("Los datos generales se registraron corectamente");
+                    MessageBox.Show("Los datos del almacen se registraron corectamente");
                 }
             }
             catch (Exception)
@@ -123,44 +119,46 @@ namespace MODULO_CEDIS
 
             Refresh();
         }
-        /*Procedimiento de Actualizacion de datos en el sistema*/
+
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (this.txtId.Text == string.Empty && this.txtNombre.Text == string.Empty && this.txtApe_razon.Text == string.Empty &&
-             this.txtDireccion.Text == string.Empty && this.txtTelefono.Text == string.Empty
-              && this.txtDNI.Text == string.Empty && this.txtDescripcion.Text == string.Empty && this.cmbEstado.Text == string.Empty)
+            //Validaciones de los campos de los fromularios que no esten nulos.
+            if (this.txtId.Text == string.Empty && this.cmbNombreABC.Text == string.Empty && this.txtTipoABC.Text == string.Empty &&
+                 this.txtPesoMax.Text == string.Empty && this.txtPesoMin.Text == string.Empty
+                 && this.txtDescripcion.Text == string.Empty && this.cmbEstado.Text == string.Empty)
             {
                 MensajeError("Falta ingresar algunos datos, serán remarcados");
                 erroricono.SetError(txtId, "Ingrese un Codigo");
-                erroricono.SetError(txtNombre, "Ingrese un nombre");
-                erroricono.SetError(txtApe_razon, "Ingrese un apellido");
-                erroricono.SetError(txtDireccion, "Ingrese una direccion");
-                erroricono.SetError(txtTelefono, "Ingrese un telefono");
-                erroricono.SetError(txtDNI, "Ingrese un numero telefonico");
+                erroricono.SetError(cmbNombreABC, "Ingrese un nombre");
+                erroricono.SetError(txtTipoABC, "Ingrese un tipo de ABC");
+                erroricono.SetError(txtPesoMax, "Ingrese el peso maximo");
+                erroricono.SetError(txtPesoMin, "Ingrese el peso minimo");
                 erroricono.SetError(txtDescripcion, "Ingrese una Descripción");
                 erroricono.SetError(cmbEstado, "Seleccione un campo");
             }
-            //Metodo para la editar datos de tipo int.
+            //Metodo para ingresar datos de tipo int.
             int codigo = 0;
             int.TryParse(txtId.Text, out codigo);
-            //Metodo para la editar datos de tipo int.
-            int numero = 0;
-            int.TryParse(txtTelefono.Text, out numero);
+            //Metodo de ingresar datos decimales
+            decimal maximo = 0;
+            decimal.TryParse(txtPesoMax.Text, out maximo);
+            //Metodo de ingresar datos decimales
+            decimal minimo = 0;
+            decimal.TryParse(txtPesoMin.Text, out minimo);
             //Seleccion de la tabla a actualizar.
-            var datos = from persona in cn.persona
-                        where persona.id.ToString() == txtId.Text
-                        select persona;
+            var datos = from ABC in cn.ABC
+                        where ABC.id.ToString() == txtId.Text
+                        select ABC;
             //Validacion de los datos a actualizar.
             if (datos.Count() > 0)
             {
-                persona encontrado = datos.First();
+                ABC encontrado = datos.First();
 
                 encontrado.id = codigo;
-                encontrado.Nombre = txtNombre.Text;
-                encontrado.Apellido_razon = txtApe_razon.Text;
-                encontrado.Direccion = txtDireccion.Text;
-                encontrado.Telefono = numero;
-                encontrado.DNI = txtDNI.Text;
+                encontrado.Nombre_ABC = cmbNombreABC.Text;
+                encontrado.Tipo_ABC = txtTipoABC.Text;
+                encontrado.Peso_max = maximo;
+                encontrado.Peso_min = minimo;
                 encontrado.Estado = cmbEstado.Text;
                 encontrado.Descripcion = txtDescripcion.Text;
             }
@@ -173,7 +171,7 @@ namespace MODULO_CEDIS
             {
                 if (cn.SaveChanges() == 1)
                 {
-                    MessageBox.Show("Los datos generales se Actualizaron corectamente");
+                    MessageBox.Show("Los datos del almacen se Actualizaron corectamente");
                 }
             }
             catch (Exception)
@@ -182,21 +180,20 @@ namespace MODULO_CEDIS
             }
 
             Refresh();
-
         }
-        //Validacion de eliminar algun registro de la base de datos.
+
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             //Llamado de la tabla de la base de datos.
-            var datos = from p in cn.persona
-                        where p.id.ToString() == txtId.Text
-                        select p;
+            var datos = from abc in cn.ABC
+                        where abc.id.ToString() == txtId.Text
+                        select abc;
             //Validacion de la eliminacion.
             if (datos.Count() > 0)
             {
-                var per = cn.persona.OrderBy(pe => pe.id).First();
-                persona pers = datos.First();
-                cn.persona.Remove(pers);
+                var abc = cn.ABC.OrderBy(a => a.id).First();
+                ABC alm = datos.First();
+                cn.ABC.Remove(alm);
             }
             else
             {
@@ -207,7 +204,7 @@ namespace MODULO_CEDIS
             {
                 if (cn.SaveChanges() == 1)
                 {
-                    MessageBox.Show("Los datos generales se eliminaron corectamente");
+                    MessageBox.Show("Los datos del almacen se eliminaron corectamente");
                 }
             }
             catch (Exception)
@@ -216,14 +213,13 @@ namespace MODULO_CEDIS
             }
             Refresh();
         }
-        /*Procedimiento de cerrar la ventana actual del formulario*/
+
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             //Validacion de cierre si hay datos en los campos del formulario.
-            if (txtId.Text != "" || txtNombre.Text != "" || txtApe_razon.Text != "" || txtDireccion.Text != "" || txtTelefono.Text != ""
-              || txtDNI.Text != "" || cmbEstado.Text != "" || txtDescripcion.Text != "")
+            if (txtId.Text != "" || cmbNombreABC.Text != "" || txtTipoABC.Text != "" || txtPesoMax.Text != "" || txtPesoMin.Text != ""
+                || cmbEstado.Text != "" || txtDescripcion.Text != "")
             {
-
                 if (MessageBox.Show("¿Tiene datos sin guardar, desea salir?", "Advertencia",
               MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     this.Close();
@@ -233,38 +229,36 @@ namespace MODULO_CEDIS
                 Close();
             }
         }
-        /*Procedimiento para cerrar en general*/
+
         private void btnCerrarvista_Click(object sender, EventArgs e)
         {
-            //Validacion de cierre de la vista de los datos.
             this.Close();
         }
-        /*Procedimiento de Busqueda de datos en el sistema*/
+
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             //Validacion del boton de busqueda de datos.
             CEDISEntities buscar = new CEDISEntities();
             //Seleccion de los datos a buscar
-            var datos = from b in buscar.persona
-                        where b.Nombre == txtBuscar.Text
+            var datos = from b in buscar.ABC
+                        where b.Nombre_ABC == txtBuscar.Text
                         select b;
 
-            var datos2 = from c in buscar.persona
+            var datos2 = from c in buscar.ABC
                          where c.Estado == cmbFiltrar.Text
                          select c;
 
             //Busqueda con txtbuscar
             if (datos.Count() > 0)
             {
-                persona encontrado = datos.First();
-   
-                MessageBox.Show("El codigo es el: " + encontrado.id + " Esta vinculado como: " + encontrado.Nombre + " " + encontrado.Apellido_razon);
+                ABC encontrado = datos.First();
+
+                MessageBox.Show("El codigo es el: " + encontrado.id + " Esta vinculado como: " + encontrado.Nombre_ABC + " " + encontrado.Tipo_ABC);
                 txtId.Text = Convert.ToString(encontrado.id);
-                txtNombre.Text = encontrado.Nombre;
-                txtApe_razon.Text = encontrado.Apellido_razon;
-                txtDireccion.Text = encontrado.Direccion;
-                txtTelefono.Text = Convert.ToString(encontrado.Telefono);
-                txtDNI.Text = encontrado.DNI;
+                cmbNombreABC.Text = encontrado.Nombre_ABC;
+                txtTipoABC.Text = encontrado.Tipo_ABC;
+                txtPesoMax.Text = Convert.ToString(encontrado.Peso_max);
+                txtPesoMin.Text = Convert.ToString(encontrado.Peso_min);
                 cmbEstado.Text = encontrado.Estado;
                 txtDescripcion.Text = encontrado.Descripcion;
                 txtBuscar.Text = string.Empty;
@@ -272,18 +266,17 @@ namespace MODULO_CEDIS
 
             }
             //Busqueda con combox filtra
-            else if(datos2.Count() > 0)
+            else if (datos2.Count() > 0)
             {
-                persona encontrado2 = datos2.First();
+                ABC encontrado2 = datos2.First();
 
-                MessageBox.Show("El codigo es el: " + encontrado2.id + " Esta vinculado como: " + encontrado2.Nombre + " " + encontrado2.Apellido_razon);
+                MessageBox.Show("El codigo es el: " + encontrado2.id + " Esta vinculado como: " + encontrado2.Nombre_ABC + " " + encontrado2.Tipo_ABC);
                 cmbFiltrar.Text = encontrado2.Estado;
                 txtId.Text = Convert.ToString(encontrado2.id);
-                txtNombre.Text = encontrado2.Nombre;
-                txtApe_razon.Text = encontrado2.Apellido_razon;
-                txtDireccion.Text = encontrado2.Direccion;
-                txtTelefono.Text = Convert.ToString(encontrado2.Telefono);
-                txtDNI.Text = encontrado2.DNI;
+                cmbNombreABC.Text = encontrado2.Nombre_ABC;
+                txtTipoABC.Text = encontrado2.Tipo_ABC;
+                txtPesoMax.Text = Convert.ToString(encontrado2.Peso_max);
+                txtPesoMin.Text = Convert.ToString(encontrado2.Peso_min);
                 cmbEstado.Text = encontrado2.Estado;
                 txtDescripcion.Text = encontrado2.Descripcion;
                 cmbFiltrar.Text = string.Empty;
@@ -294,12 +287,6 @@ namespace MODULO_CEDIS
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Reportes.FrmReportePerson open = new Reportes.FrmReportePerson();
-            open.Show();
-        }
-
         private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
@@ -307,22 +294,21 @@ namespace MODULO_CEDIS
                 //Validacion del boton de busqueda de datos.
                 CEDISEntities buscar = new CEDISEntities();
                 //Seleccion de los datos a buscar
-                var datos = from b in buscar.persona
-                            where b.Nombre == txtBuscar.Text
+                var datos = from b in buscar.ABC
+                            where b.Nombre_ABC == txtBuscar.Text
                             select b;
 
                 //Busqueda con txtbuscar
                 if (datos.Count() > 0)
                 {
-                    persona encontrado = datos.First();
+                    ABC encontrado = datos.First();
 
-                    MessageBox.Show("El codigo es el: " + encontrado.id + " Esta vinculado como: " + encontrado.Nombre + " " + encontrado.Apellido_razon);
+                    MessageBox.Show("El codigo es el: " + encontrado.id + " Esta vinculado como: " + encontrado.Nombre_ABC + " " + encontrado.Tipo_ABC);
                     txtId.Text = Convert.ToString(encontrado.id);
-                    txtNombre.Text = encontrado.Nombre;
-                    txtApe_razon.Text = encontrado.Apellido_razon;
-                    txtDireccion.Text = encontrado.Direccion;
-                    txtTelefono.Text = Convert.ToString(encontrado.Telefono);
-                    txtDNI.Text = encontrado.DNI;
+                    cmbNombreABC.Text = encontrado.Nombre_ABC;
+                    txtTipoABC.Text = encontrado.Tipo_ABC;
+                    txtPesoMax.Text = Convert.ToString(encontrado.Peso_max);
+                    txtPesoMin.Text = Convert.ToString(encontrado.Peso_min);
                     cmbEstado.Text = encontrado.Estado;
                     txtDescripcion.Text = encontrado.Descripcion;
                     txtBuscar.Text = string.Empty;
@@ -332,10 +318,11 @@ namespace MODULO_CEDIS
                     MessageBox.Show("El sugeto no existe");
                 }
             }
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
 
         }
     }
-
 }
-
-
